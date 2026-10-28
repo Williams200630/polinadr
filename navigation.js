@@ -16,6 +16,11 @@ export function objective(s){
  if(!s.done.forest&&!s.flags.forestNoteRead)return g('Прочитай записку на столбе остановки.','forest',0,'forestnote');
  if(!s.done.forest&&s.flags.umbrella&&!s.flags.rain)return g(s.flags.rainSeen?'Повтори увиденный рисунок капель.':'Посмотри демонстрацию рисунка дождя под зонтом.','forest',0,'umbrella');
  if(!s.done.forest)return s.flags.rain?g(s.flags.planted?'Ростку нужна вода из ведра.':'Теперь можно посадить жёлудь в рыхлую землю.','forest',1,'soil'):g('На остановке лежит зонт. Под ним записка о дожде.','forest',0,'umbrella');
+ const X=s.flags.x||{};
+ if(!X.door)return !X.dolls?g('В архиве на полке сидят три куклы с пуговицами. Осмотри их.','archive',2,'x-dolls'):g('В прихожей есть маленькая дверца. Куклы подсказали код.','hall',1,'x-door');
+ if(!X.well)return g('За дверцей шепчут о колодце. Он в зеркальной комнате.','mirror',0,'x-well');
+ if(!X.sign)return g('В лесу у остановки стоит табличка Котобуса.','forest',0,'x-sign');
+ if(!X.dance)return g('Станцуй у корней, как написано на билете.','forest',3,'x-dance');
  return g(s.flags.hands?'Стрелки на месте. В журнале сохранилось время приглашения.':'Верни часам обе найденные стрелки.','hall',0,'clock');
 }
 export const icons={left:'<path d="M27 6L10 24l17 18"/>',right:'<path d="M14 6l17 18-17 18"/>',down:'<path d="M6 16l18 17 18-17"/>',sound:'<path d="M8 18h9l12-9v30l-12-9H8zM35 15q11 9 0 18"/>',muted:'<path d="M8 18h9l12-9v30l-12-9H8zM35 18l9 12m0-12-9 12"/>',journal:'<path d="M9 7h26v35H9zM15 7v35M21 16h8m-8 7h8m-8 7h8"/>',hint:'<path d="M18 21h12v17H18zM24 21v-5q-9-7 0-15q9 9 0 15M11 39h26"/>',eye:'<path d="M3 24q21-26 42 0q-21 26-42 0z"/><circle cx="24" cy="24" r="7"/>',menu:'<path d="M8 13h32M8 24h32M8 35h32"/>',locate:'<circle cx="24" cy="24" r="13"/><path d="M24 3v11m0 20v11M3 24h11m20 0h11"/>',zoom:'<circle cx="20" cy="20" r="12"/><path d="M29 29l12 12M14 20h12m-6-6v12"/>'};
